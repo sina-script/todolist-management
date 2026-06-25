@@ -1,0 +1,73 @@
+*{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+}
+main{
+    padding: 30px 30px 0px 30px;
+}
+nav , .existing-tasks , .completed-tasks{
+    width: 84%;
+    margin-left: 8%;
+    padding: 20px 15px;
+    box-sizing: border-box;
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+h1{
+    margin: 0px;
+    color: rgb(255, 109, 55);
+}
+.buttons{
+    display: flex;
+}
+.add-task-btn, select{
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    padding: 0px 10px;
+    height: 35px;
+    border-radius: 10px;
+    transition: 0.2s;
+    outline: none;
+}
+select{
+    width: 90px;
+    margin-left: 20px;
+    background-color: aqua;
+    border: 2px solid aqua;
+}
+.add-task-btn{
+    padding: 5px 10px;
+    background-color: rgb(0, 209, 0);
+    border: 2px solid rgb(0, 209, 0);
+}
+.add-task-btn:hover{
+    color: rgb(0, 209, 0);
+    background-color: white;
+}
+select:hover{
+    background-color: white;
+    color: aqua;
+}
+.add-task-btn img{
+    width: 20px;
+    margin-left: 5px;
+}
+hr{
+    width: 84%;
+    margin-left: 8%;
+    height: 2px;
+    background-color: gray;
+    border-radius: 50px;
+}
+.blur-main{
+    filter: blur(2px);
+    pointer-events: none;
+}
