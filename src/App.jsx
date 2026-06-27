@@ -19,6 +19,20 @@ function App() {
 
     setTasksList([...tasksList, newTask]);
   };
+
+
+    const completeTask = (taskId) => {
+      const newTasksList=tasksList.map((task) => {
+        if (task.id == taskId) {
+          task.isCompleted = true;
+        }
+
+        return task;
+      });
+
+      setTasksList(newTasksList)      
+    };
+
   return (
     <>
       <main className="">
@@ -49,7 +63,7 @@ function App() {
               return task.isCompleted == false;
             })
             .map((task) => {
-              return <Task key={task.id} {...task}></Task>;
+              return <Task key={task.id} {...task} completeTask={completeTask}></Task>;
             })}
         </div>
 

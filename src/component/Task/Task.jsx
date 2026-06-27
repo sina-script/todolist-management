@@ -1,6 +1,6 @@
 import styles from "./Task.module.css"
 
-function Task({ taskTitle, taskCaption, isCompleted, isImportant }) {
+function Task({id, taskTitle, taskCaption, isCompleted, isImportant ,completeTask}) {
   return (
     <article>
       <div className={styles.descriptions}>
@@ -9,7 +9,9 @@ function Task({ taskTitle, taskCaption, isCompleted, isImportant }) {
       </div>
 
       <div className={styles.buttons}>
-        <img className={styles.icons} src="./public/complete.png" alt="complete task icon" />
+        <p className={`${styles.completedLabel} ${isCompleted?"":styles.hidden}`}>completed</p>
+        <p className={`${styles.importantLabel} ${isImportant?"":styles.hidden}`}>important</p>
+        <img className={styles.icons} src="./public/complete.png" alt="complete task icon" onClick={()=>completeTask(id)}/>
         <img className={styles.icons} src="./public/remove.png" alt="remove task icon" />
       </div>
     </article>
