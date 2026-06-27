@@ -51,13 +51,20 @@ function App() {
               onClick={() => setIsShowModal(true)}
             >
               add task
-              <img src="./public/plus.png" alt="" />
+              <img src="./public/plus.png" alt="add task icon" />
             </button>
-            <select>
-              <option value="all tasks">all tasks</option>
-              <option value="completed tasks">completed tasks</option>
-              <option value="not completed task">not completed task</option>
-            </select>
+            <div className="custom-dropdown">
+              <button className="dropdown-btn">
+                <span>filter by</span>
+                <img src="./public/down.png" alt="drop down icon" />
+              </button>
+
+              <div className="dropdown-menu">
+                <div className="dropdown-item" onClick={()=>alert("All")}>all</div>
+                <div className="dropdown-item" onClick={()=>alert("Completed")}>completed</div>
+                <div className="dropdown-item" onClick={()=>alert("Not-Completed")}>not completed</div>
+              </div>
+            </div>
           </div>
         </nav>
 
