@@ -20,18 +20,25 @@ function App() {
     setTasksList([...tasksList, newTask]);
   };
 
+  const completeTask = (taskId) => {
+    const newTasksList = tasksList.map((task) => {
+      if (task.id == taskId) {
+        task.isCompleted = true;
+      }
 
-    const completeTask = (taskId) => {
-      const newTasksList=tasksList.map((task) => {
-        if (task.id == taskId) {
-          task.isCompleted = true;
-        }
+      return task;
+    });
 
-        return task;
-      });
+    setTasksList(newTasksList);
+  };
 
-      setTasksList(newTasksList)      
-    };
+  const removeTask = (taskId) => {
+    const newTasksList = tasksList.filter((task) => {
+      return task.id != taskId;
+    });
+
+    setTasksList(newTasksList);
+  };
 
   return (
     <>
@@ -63,7 +70,14 @@ function App() {
               return task.isCompleted == false;
             })
             .map((task) => {
-              return <Task key={task.id} {...task} completeTask={completeTask}></Task>;
+              return (
+                <Task
+                  key={task.id}
+                  {...task}
+                  completeTask={completeTask}
+                  removeTask={removeTask}
+                ></Task>
+              );
             })}
         </div>
 
@@ -76,7 +90,9 @@ function App() {
               return task.isCompleted == true;
             })
             .map((task) => {
-              return <Task key={task.id} {...task}></Task>;
+              return (
+                <Task key={task.id} {...task} removeTask={removeTask}></Task>
+              );
             })}
         </div>
       </main>

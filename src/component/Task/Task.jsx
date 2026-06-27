@@ -1,6 +1,6 @@
 import styles from "./Task.module.css"
 
-function Task({id, taskTitle, taskCaption, isCompleted, isImportant ,completeTask}) {
+function Task({id, taskTitle, taskCaption, isCompleted, isImportant ,completeTask,removeTask}) {
   return (
     <article>
       <div className={styles.descriptions}>
@@ -10,9 +10,9 @@ function Task({id, taskTitle, taskCaption, isCompleted, isImportant ,completeTas
 
       <div className={styles.buttons}>
         <p className={`${styles.completedLabel} ${isCompleted?"":styles.hidden}`}>completed</p>
-        <p className={`${styles.importantLabel} ${isImportant?"":styles.hidden}`}>important</p>
-        <img className={styles.icons} src="./public/complete.png" alt="complete task icon" onClick={()=>completeTask(id)}/>
-        <img className={styles.icons} src="./public/remove.png" alt="remove task icon" />
+        <p className={`${styles.importantLabel} ${isImportant?"":styles.hidden} ${isCompleted?styles.hidden:""}`}>important</p>
+        <img className={`${styles.icons} ${isCompleted?styles.hidden:""}`} src="./public/complete.png" alt="complete task icon" onClick={()=>completeTask(id)}/>
+        <img className={styles.icons} src="./public/remove.png" alt="remove task icon" onClick={()=>removeTask(id)}/>
       </div>
     </article>
   )
