@@ -1,6 +1,6 @@
 import styles from "./AddTaskModal.module.css";
 
-function AddTaskModal() {
+function AddTaskModal({closeModal}) {
   return <div className={styles.modalScreen}>
     <input type="text" className={styles.getTitle} placeholder="Enter the title..."/>
     <textarea className={styles.getCaption} rows={40} placeholder="Enter the caption..."></textarea>
@@ -10,7 +10,7 @@ function AddTaskModal() {
     </label>
     <div className={styles.buttons}>
       <button className={styles.createTaskBtn}>create task</button>
-      <button className={styles.closeTaskBtn}>close task</button>
+      <button className={styles.closeTaskBtn} onClick={closeModal}>close task</button>
     </div>
     
   </div>;

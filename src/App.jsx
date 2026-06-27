@@ -6,13 +6,15 @@ import "./App.css";
 
 function App() {
 
+  const [isModalShow,setIsModalShow]=useState(false)
+
   return (
     <>
       <main className="">
         <nav>
           <h1>Task Management</h1>
           <div className="buttons">
-            <button className="add-task-btn">
+            <button className="add-task-btn" onClick={()=>setIsModalShow(true)}>
               add task
               <img src="./public/plus.png" alt="" />
             </button>
@@ -26,7 +28,7 @@ function App() {
 
         <hr />
 
-        <div className="existing-tasks">
+        <div className="existing-tasks">    
           <h2>Existing Tasks : </h2>
           <Task></Task>
         </div>
@@ -38,6 +40,8 @@ function App() {
           <Task></Task>
         </div>
       </main>
+
+      {isModalShow&&<AddTaskModal closeModal={()=>setIsModalShow(false)}></AddTaskModal>}
     </>
   );
 }
