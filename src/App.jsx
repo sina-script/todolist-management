@@ -6,7 +6,7 @@ import "./App.css";
 
 function App() {
   const [tasksList, setTasksList] = useState([]);
-  const [isModalShow, setIsModalShow] = useState(false);
+  const [isShowModal, setIsShowModal] = useState(false);
 
   const addTask = (taskTitle, taskCaption, isImportant) => {
     const newTask = {
@@ -42,13 +42,13 @@ function App() {
 
   return (
     <>
-      <main className="">
+      <main className={isShowModal ? "blur-main" : ""}>
         <nav>
           <h1>Task Management</h1>
           <div className="buttons">
             <button
               className="add-task-btn"
-              onClick={() => setIsModalShow(true)}
+              onClick={() => setIsShowModal(true)}
             >
               add task
               <img src="./public/plus.png" alt="" />
@@ -97,9 +97,9 @@ function App() {
         </div>
       </main>
 
-      {isModalShow && (
+      {isShowModal && (
         <AddTaskModal
-          closeModal={() => setIsModalShow(false)}
+          closeModal={() => setIsShowModal(false)}
           addTask={addTask}
         ></AddTaskModal>
       )}

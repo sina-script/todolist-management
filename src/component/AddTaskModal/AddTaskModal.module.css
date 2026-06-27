@@ -1,7 +1,7 @@
 .modalScreen{
     width: 300px;
     height: 350px;
-    background-color: rgb(255, 161, 127);
+    background-color: rgb(255, 188, 164);
     position: fixed;
     z-index: 10;
     top: 50%;
@@ -53,7 +53,15 @@ label{
     color: rgb(255, 21, 21);
     background-color: white;
 }
-.getTitle, .getCaption,label, .buttons{
+small,label, .buttons{
+    margin-bottom: 20px;
+}
+small{
+    margin-top: 5px;
+    font-size: 0.7rem;
+    color: red;
+}
+.spaceBottom{
     margin-bottom: 20px;
 }
 
