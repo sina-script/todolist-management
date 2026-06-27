@@ -11,8 +11,7 @@ function AddTaskModal({ closeModal, addTask }) {
   const checkModal = () => {
     if (title.trim() == "") {
       setIsTitleEmpty(true);
-    }
-    else if (caption.trim() == "") {
+    } else if (caption.trim() == "") {
       setIsCaptionEmpty(true);
     } else {
       addTask(title, caption, important);
@@ -21,28 +20,37 @@ function AddTaskModal({ closeModal, addTask }) {
   };
 
   return (
-    <div className={styles.modalScreen}>
+    <div
+      className={styles.modalScreen}
+      onKeyUp={(event) => {
+        if (event.key == "Enter") {
+          checkModal();
+        } else if (event.key == "Escape") {
+          closeModal();
+        }
+      }}
+    >
       <input
         type="text"
-        className={`${styles.getTitle} ${isTitleEmpty?"":styles.spaceBottom}`}
+        className={`${styles.getTitle} ${isTitleEmpty ? "" : styles.spaceBottom}`}
         placeholder="Enter the title..."
         value={title}
         onChange={(event) => {
-          setTitle(event.target.value)
-          setIsTitleEmpty(false)
+          setTitle(event.target.value);
+          setIsTitleEmpty(false);
         }}
       />
       {isTitleEmpty && (
         <small>You must not leave the new task title empty.</small>
       )}
       <textarea
-        className={`${styles.getCaption} ${isCaptionEmpty?"":styles.spaceBottom}`}
+        className={`${styles.getCaption} ${isCaptionEmpty ? "" : styles.spaceBottom}`}
         rows={40}
         placeholder="Enter the caption..."
         value={caption}
         onChange={(event) => {
-          setCaption(event.target.value)
-          setIsCaptionEmpty(false)
+          setCaption(event.target.value);
+          setIsCaptionEmpty(false);
         }}
       ></textarea>
       {isCaptionEmpty && (
