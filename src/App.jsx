@@ -1,6 +1,7 @@
 import { use, useState } from "react";
 import Task from "./component/Task/Task";
 import AddTaskModal from "./component/AddTaskModal/AddTaskModal";
+import NoTask from "./component/NoTask/NoTask";
 
 import "./App.css";
 
@@ -98,7 +99,7 @@ function App() {
 
         <div className="existing-tasks">
           <h2>Existing Tasks : </h2>
-          {
+          {filterByHandler().length > 0 ? (
             filterByHandler().map((task) => {
               return (
                 <Task
@@ -108,22 +109,31 @@ function App() {
                   removeTask={removeTask}
                 ></Task>
               );
-            })}
+            })
+          ) : (
+            <NoTask></NoTask>
+          )}
         </div>
 
         <hr />
 
         <div className="completed-tasks">
           <h2>Completed Tasks : </h2>
-          {tasksList
-            .filter((task) => {
-              return task.isCompleted == true;
-            })
-            .map((task) => {
-              return (
-                <Task key={task.id} {...task} removeTask={removeTask}></Task>
-              );
-            })}
+          {tasksList.filter((task) => {
+            return task.isCompleted == true;
+          }).length > 0 ? (
+            tasksList
+              .filter((task) => {
+                return task.isCompleted == true;
+              })
+              .map((task) => {
+                return (
+                  <Task key={task.id} {...task} removeTask={removeTask}></Task>
+                );
+              })
+          ) : (
+            <NoTask></NoTask>
+          )}
         </div>
       </main>
 
