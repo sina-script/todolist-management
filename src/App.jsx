@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import Task from "./component/Task/Task";
 import AddTaskModal from "./component/AddTaskModal/AddTaskModal";
 
@@ -7,6 +7,7 @@ import "./App.css";
 function App() {
   const [tasksList, setTasksList] = useState([]);
   const [isShowModal, setIsShowModal] = useState(false);
+  const [filterBy, setFilterBy] = useState("all");
 
   const addTask = (taskTitle, taskCaption, isImportant) => {
     const newTask = {
@@ -40,6 +41,16 @@ function App() {
     setTasksList(newTasksList);
   };
 
+  const filterByHandler = () => {
+    if (filterBy == "all") {
+      return tasksList;
+    } else if (filterBy == "completed") {
+      return tasksList.filter((task) => task.isCompleted == true);
+    } else {
+      return tasksList.filter((task) => task.isCompleted == false);
+    }
+  };
+
   return (
     <>
       <main className={isShowModal ? "blur-main" : ""}>
@@ -60,9 +71,24 @@ function App() {
               </button>
 
               <div className="dropdown-menu">
-                <div className="dropdown-item" onClick={()=>alert("All")}>all</div>
-                <div className="dropdown-item" onClick={()=>alert("Completed")}>completed</div>
-                <div className="dropdown-item" onClick={()=>alert("Not-Completed")}>not completed</div>
+                <div
+                  className="dropdown-item"
+                  onClick={() => setFilterBy("all")}
+                >
+                  all
+                </div>
+                <div
+                  className="dropdown-item"
+                  onClick={() => setFilterBy("completed")}
+                >
+                  completed
+                </div>
+                <div
+                  className="dropdown-item"
+                  onClick={() => setFilterBy("not-completed")}
+                >
+                  not completed
+                </div>
               </div>
             </div>
           </div>
@@ -72,11 +98,8 @@ function App() {
 
         <div className="existing-tasks">
           <h2>Existing Tasks : </h2>
-          {tasksList
-            .filter((task) => {
-              return task.isCompleted == false;
-            })
-            .map((task) => {
+          {
+            filterByHandler().map((task) => {
               return (
                 <Task
                   key={task.id}
